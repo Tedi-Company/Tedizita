@@ -1,0 +1,17 @@
+MOD: Tedizita OP
+AUTOR:  Tedi-Company
+
+-----------------------------------------------------------
+CÓDIGO (Arquivos .lua):
+Licença: GPL-3.0-or-later
+O código deste mod é livre: você pode redistribuí-lo e/ou modificá-lo 
+sob os termos da GNU General Public License conforme publicada pela 
+Free Software Foundation, versão 3 ou posterior.
+-----------------------------------------------------------
+
+MÍDIA (Imagens .png e Sons):
+Licença: CC BY-SA 4.0 (Creative Commons Atribuição-CompartilhaIgual)
+Você é livre para compartilhar e adaptar as texturas, desde que 
+atribua os créditos ao autor original e compartilhe suas 
+modificações sob a mesma licença.
+-----------------------------------------------------------
