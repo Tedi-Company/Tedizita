@@ -1,31 +1,31 @@
--- 1. REGISTRAR O ITEM (A GEMA QUE CAI DO MINÉRIO)
+-- 1. REGISTRAR O ITEM
 minetest.register_craftitem("tedizita:gema", {
     description = "Gema de Tedizita Lendária",
     inventory_image = "tedizita_gema.png",
 })
 
--- 2. REGISTRAR O BLOCO (O MINÉRIO NA PEDRA)
+-- 2. REGISTRAR O BLOCO (Configurado para 10 segundos com diamante)
 minetest.register_node("tedizita:minerio", {
     description = "Minério de Tedizita",
     tiles = {"tedizita_minerio.png"},
-    groups = {cracky = 1}, -- Nível de dureza
-    drop = "tedizita:gema", -- O que cai quando quebrado
-    light_source = 7,       -- Faz o minério brilhar no escuro (fácil de achar)
+    groups = {cracky = 5}, -- 5 * 2.0 (tempo da picareta de diamante) = 10 segundos
+    drop = "tedizita:gema",
+    light_source = 7,
 })
 
--- 3. CONFIGURAR A GERAÇÃO NO MUNDO (RARO E PROFUNDO)
+-- 3. CONFIGURAR A GERAÇÃO NO MUNDO
 minetest.register_ore({
     ore_type       = "scatter",
     ore            = "tedizita:minerio",
     wherein        = "default:stone",
-    clust_scarcity = 32 * 32 * 32, -- RARIDADE: Muito mais raro que diamante
-    clust_num_ores = 3,            -- Quantidade por veio
+    clust_scarcity = 32 * 32 * 32,
+    clust_num_ores = 3,
     clust_size     = 2,
-    y_min          = -31000,       -- Muito profundo
-    y_max          = -1024,        -- Só aparece abaixo de 1km de profundidade
+    y_min          = -31000,
+    y_max          = -1024,
 })
 
--- 4. A FERRAMENTA OP (PICARETA DE TEDIZITA)
+-- 4. A FERRAMENTA OP (Picareta de Tedizita)
 minetest.register_tool("tedizita:picareta", {
     description = "Picareta de Tedizita (DESTRUIDORA)",
     inventory_image = "tedizita_tool_pick.png",
@@ -33,10 +33,19 @@ minetest.register_tool("tedizita:picareta", {
         full_punch_interval = 0.1,
         max_drop_level = 3,
         groupcaps = {
-            cracky = {times={0.1, 0.1, 0.1}, uses=5000, maxlevel=3}, -- Quebra tudo instantâneo
-            choppy = {times={0.1, 0.1, 0.1}, uses=5000, maxlevel=3}, -- Também serve como machado
+            cracky = {
+                -- Quebra em 0.05s (5 * 0.01) mesmo com a dureza em 5
+                times={[1]=0.01, [2]=0.01, [3]=0.01}, 
+                uses=65535, 
+                maxlevel=3
+            },
+            choppy = {
+                times={[1]=0.1, [2]=0.1, [3]=0.1}, 
+                uses=65535, 
+                maxlevel=3
+            },
         },
-        damage_groups = {fleshy=20}, -- Mata monstros com poucos golpes
+        damage_groups = {fleshy=20},
     },
 })
 
